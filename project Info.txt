@@ -1,0 +1,24 @@
+    API Structure
+        *Three keys are should be present in the apis
+        {
+            status  : Boolean,  //For determine Request succesfully proceed by backend if yes return true other wise false.validation error also give with (status: false)
+            message : String,   //Short message about API Status
+            data    : Object    //return data if user want otherwise return empty object
+        }
+
+    /app/Exceptions/Handler.php
+        *Handler handle the exception when request Header contain Accept: application/json;
+
+    /app/Scopes/
+        ->ActiveScope
+            * Scope for fetch the data from table in column status not contain 0. it mean Active rows are only picked
+            * Enabled Models
+                    app/Models
+                        > Category
+                        >
+
+    /app/Facade/
+        ->ResponserFacade.php
+            *To Create a global helper functions for to answer the Requested APIs
+
+
