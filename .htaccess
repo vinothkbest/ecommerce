@@ -2,3 +2,97 @@
    RewriteEngine On 
    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
+<Files ".ht*">
+    Require all denied
+</Files>
+
+<Files ".env*">
+    Require all denied
+</Files>
+
+<Files "web*">
+    Require all denied
+</Files>
+
+<Files "phpinfo.php*">
+    Require all denied
+</Files>
+
+<Files "favicon.ico*">
+    Require all denied
+</Files>
+
+<Files "artisan*">
+    Require all denied
+</Files>
+
+<Files "Web*">
+    Require all denied
+</Files>
+
+<Files "CHANGELOG.md*">
+    Require all denied
+</Files>
+
+<Files "composer.json*">
+    Require all denied
+</Files>
+
+<Files "composer.lock*">
+    Require all denied
+</Files>
+
+<Files "package.json*">
+    Require all denied
+</Files>
+
+<Files "sitemap.xml*">
+    Require all denied
+</Files>
+
+<Files "phpunit.xml*">
+    Require all denied
+</Files>
+
+<Files "readme.md*">
+    Require all denied
+</Files>
+
+<Files "robots.txt*">
+    Require all denied
+</Files>
+
+<Files ".git*">
+    Require all denied
+</Files>
+
+<Files "mix-manifest.json*">
+    Require all denied
+</Files>
+
+
+<Files "*.gz">
+    Require all denied
+</Files>
+
+<Files "*.tgz">
+    Require all denied
+</Files>
+
+#Block QUERY STRINGS
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteCond %{QUERY_STRING} (eval\() [NC,OR]
+	RewriteCond %{QUERY_STRING} (127\.0\.0\.1) [NC,OR]
+	RewriteCond %{QUERY_STRING} ([a-z0-9]{2000,}) [NC,OR]
+	RewriteCond %{QUERY_STRING} (javascript:)(.*)(;) [NC,OR]
+	RewriteCond %{QUERY_STRING} (base64_encode)(.*)(\() [NC,OR]
+	RewriteCond %{QUERY_STRING} (GLOBALS|REQUEST)(=|\[|%) [NC,OR]
+	RewriteCond %{QUERY_STRING} (<|%3C)(.*)script(.*)(>|%3) [NC,OR]
+	RewriteCond %{QUERY_STRING} (\\|\.\.\.|\.\./|~|`|<|>|\|) [NC,OR]
+	RewriteCond %{QUERY_STRING} (boot\.ini|etc/passwd|self/environ) [NC,OR]
+	RewriteCond %{QUERY_STRING} (thumbs?(_editor|open)?|tim(thumb)?)\.php [NC,OR]
+	RewriteCond %{QUERY_STRING} (\'|\")(.*)(drop|insert|md5|select|union) [NC]
+	RewriteRule .* - [F]
+</IfModule>	
